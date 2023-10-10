@@ -102,21 +102,21 @@ mysql> select * from item where price>1000000;
 | id | name        | description                                                     | price   | stock | category_id |
 +----+-------------+-----------------------------------------------------------------+---------+-------+-------------+
 |  1 | Sumsang b50 | Handphone canggih dari Sumsang yang dapat menemani aktivitas mu | 4000000 |   100 |           1 |
-|  4 | IMHO Wacth  | Smart watch yang dapat membantu orang tua untuk mencari anaknya | 2000000 |    50 |           1 |
+|  3 | IMHO Wacth  | Smart watch yang dapat membantu orang tua untuk mencari anaknya | 2000000 |    50 |           1 |
 +----+-------------+-----------------------------------------------------------------+---------+-------+-------------+
 
 mysql> select * from item where name like 'uniklo%';
 +----+----------+--------------------------------------------------------------+--------+-------+-------------+
 | id | name     | description                                                  | price  | stock | category_id |
 +----+----------+--------------------------------------------------------------+--------+-------+-------------+
-|  3 | Uniklooh | Baju yang nyaman untuk digunakan beraktivitas sepanjang hari | 500000 |    50 |           2 |
+|  2 | Uniklooh | Baju yang nyaman untuk digunakan beraktivitas sepanjang hari | 500000 |    50 |           2 |
 +----+----------+--------------------------------------------------------------+--------+-------+-------------+
 
 mysql> select * from item where name like '%wacth';
 +----+------------+-----------------------------------------------------------------+---------+-------+-------------+
 | id | name       | description                                                     | price   | stock | category_id |
 +----+------------+-----------------------------------------------------------------+---------+-------+-------------+
-|  4 | IMHO Wacth | Smart watch yang dapat membantu orang tua untuk mencari anaknya | 2000000 |    50 |           1 |
+|  3 | IMHO Wacth | Smart watch yang dapat membantu orang tua untuk mencari anaknya | 2000000 |    50 |           1 |
 +----+------------+-----------------------------------------------------------------+---------+-------+-------------+
 
 mysql> select * from item where name like '%sang%';
@@ -124,7 +124,6 @@ mysql> select * from item where name like '%sang%';
 | id | name        | description                                                     | price   | stock | category_id |
 +----+-------------+-----------------------------------------------------------------+---------+-------+-------------+
 |  1 | Sumsang b50 | Handphone canggih dari Sumsang yang dapat menemani aktivitas mu | 4000000 |   100 |           1 |
-|  2 | Sumsang b50 | Baju yang nyaman untuk digunakan beraktivitas sepanjang hari    |  500000 |    50 |           2 |
 +----+-------------+-----------------------------------------------------------------+---------+-------+-------------+
 
 (C)
@@ -133,9 +132,8 @@ mysql> select item.id, item.name, item.description, item.price, item.stock, item
 | id | name        | description                                                     | price   | stock | category_id | name   |
 +----+-------------+-----------------------------------------------------------------+---------+-------+-------------+--------+
 |  1 | Sumsang b50 | Handphone canggih dari Sumsang yang dapat menemani aktivitas mu | 4000000 |   100 |           1 | gadget |
-|  2 | Sumsang b50 | Baju yang nyaman untuk digunakan beraktivitas sepanjang hari    |  500000 |    50 |           2 | cloth  |
-|  3 | Uniklooh    | Baju yang nyaman untuk digunakan beraktivitas sepanjang hari    |  500000 |    50 |           2 | cloth  |
-|  4 | IMHO Wacth  | Smart watch yang dapat membantu orang tua untuk mencari anaknya | 2000000 |    50 |           1 | gadget |
+|  2 | Uniklooh    | Baju yang nyaman untuk digunakan beraktivitas sepanjang hari    |  500000 |    50 |           2 | cloth  |
+|  3 | IMHO Wacth  | Smart watch yang dapat membantu orang tua untuk mencari anaknya | 2000000 |    50 |           1 | gadget |
 +----+-------------+-----------------------------------------------------------------+---------+-------+-------------+--------+
 
 5.
@@ -148,7 +146,6 @@ mysql> select * from item;
 | id | name        | description                                                     | price    | stock | category_id |
 +----+-------------+-----------------------------------------------------------------+----------+-------+-------------+
 |  1 | Sumsang b50 | Handphone canggih dari Sumsang yang dapat menemani aktivitas mu | 25000000 |   100 |           1 |
-|  2 | Sumsang b50 | Baju yang nyaman untuk digunakan beraktivitas sepanjang hari    |   500000 |    50 |           2 |
-|  3 | Uniklooh    | Baju yang nyaman untuk digunakan beraktivitas sepanjang hari    |   500000 |    50 |           2 |
-|  4 | IMHO Wacth  | Smart watch yang dapat membantu orang tua untuk mencari anaknya |  2000000 |    50 |           1 |
+|  2 | Uniklooh    | Baju yang nyaman untuk digunakan beraktivitas sepanjang hari    |   500000 |    50 |           2 |
+|  3 | IMHO Wacth  | Smart watch yang dapat membantu orang tua untuk mencari anaknya |  2000000 |    50 |           1 |
 +----+-------------+-----------------------------------------------------------------+----------+-------+-------------+
