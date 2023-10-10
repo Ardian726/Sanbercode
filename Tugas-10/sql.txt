@@ -1,0 +1,154 @@
+1.
+mysql> create database myshop;
+
+2.
+mysql> create table users(
+    -> id int(8) primary key auto_increment,
+    -> name varchar(255),
+    -> email varchar(255),
+    -> password varchar(255)
+    -> );
+
+mysql> select * from users;
++----+----------+--------------+-----------+
+| id | name     | email        | password  |
++----+----------+--------------+-----------+
+|  1 | John Doe | john@doe.com | john123   |
+|  2 | Jane Doe | jane@doe.com | jenita123 |
++----+----------+--------------+-----------+
+
+mysql> create table categories(
+    -> id int(8) primary key auto_increment,
+    -> name varchar(255)
+    -> );
+
+mysql> select * from categories;
++----+---------+
+| id | name    |
++----+---------+
+|  1 | gadget  |
+|  2 | cloth   |
+|  3 | men     |
+|  4 | women   |
+|  5 | branded |
++----+---------+
+
+mysql> create table item(
+    -> id int(8) primary key auto_increment,
+    -> name varchar(255),
+    -> description varchar(255),
+    -> price int(20),
+    -> stock int(8),
+    -> category_id int,
+    -> foreign key(category_id) references categories(id)
+    -> );
+
+mysql> select * from item;
++----+-------------+-----------------------------------------------------------------+---------+-------+-------------+
+| id | name        | description                                                     | price   | stock | category_id |
++----+-------------+-----------------------------------------------------------------+---------+-------+-------------+
+|  1 | Sumsang b50 | Handphone canggih dari Sumsang yang dapat menemani aktivitas mu | 4000000 |   100 |           1 |
+|  2 | Uniklooh    | Baju yang nyaman untuk digunakan beraktivitas sepanjang hari    |  500000 |    50 |           2 |
+|  3 | IMHO Wacth  | Smart watch yang dapat membantu orang tua untuk mencari anaknya | 2000000 |    50 |           1 |
++----+-------------+-----------------------------------------------------------------+---------+-------+-------------+
+
+3.
+// Tabel Users
+mysql> insert into users (name, email, password)
+    -> values("John Doe", "john@doe.com", "john123");
+
+mysql> insert into users (name, email, password)
+    -> values("Jane Doe", "jane@doe.com", "jenita123");
+
+// Tabel Categories
+mysql> insert into categories (name)
+    -> values("gadget");
+
+mysql> insert into categories (name)
+    -> values("cloth");
+
+mysql> insert into categories (name)
+    -> values("men");
+
+mysql> insert into categories (name)
+    -> values("women");
+
+mysql> insert into categories (name)
+    -> values("branded");
+
+// Tabel Item
+mysql> insert into item (name, description, price, stock, category_id)
+    -> values("Sumsang b50", "Handphone canggih dari Sumsang yang dapat menemani aktivitas mu", 4000000, 100, 1);
+
+mysql> insert into item (name, description, price, stock, category_id)
+    -> values("Uniklooh", "Baju yang nyaman untuk digunakan beraktivitas sepanjang hari", 500000, 50, 2);
+
+mysql> insert into item (name, description, price, stock, category_id)
+    -> values("IMHO Wacth", "Smart watch yang dapat membantu orang tua untuk mencari anaknya", 2000000, 50, 1);
+
+4.
+(A)
+mysql> select id, name, email from users;
++----+----------+--------------+
+| id | name     | email        |
++----+----------+--------------+
+|  1 | John Doe | john@doe.com |
+|  2 | Jane Doe | jane@doe.com |
++----+----------+--------------+
+
+(B)
+mysql> select * from item where price>1000000;
++----+-------------+-----------------------------------------------------------------+---------+-------+-------------+
+| id | name        | description                                                     | price   | stock | category_id |
++----+-------------+-----------------------------------------------------------------+---------+-------+-------------+
+|  1 | Sumsang b50 | Handphone canggih dari Sumsang yang dapat menemani aktivitas mu | 4000000 |   100 |           1 |
+|  4 | IMHO Wacth  | Smart watch yang dapat membantu orang tua untuk mencari anaknya | 2000000 |    50 |           1 |
++----+-------------+-----------------------------------------------------------------+---------+-------+-------------+
+
+mysql> select * from item where name like 'uniklo%';
++----+----------+--------------------------------------------------------------+--------+-------+-------------+
+| id | name     | description                                                  | price  | stock | category_id |
++----+----------+--------------------------------------------------------------+--------+-------+-------------+
+|  3 | Uniklooh | Baju yang nyaman untuk digunakan beraktivitas sepanjang hari | 500000 |    50 |           2 |
++----+----------+--------------------------------------------------------------+--------+-------+-------------+
+
+mysql> select * from item where name like '%wacth';
++----+------------+-----------------------------------------------------------------+---------+-------+-------------+
+| id | name       | description                                                     | price   | stock | category_id |
++----+------------+-----------------------------------------------------------------+---------+-------+-------------+
+|  4 | IMHO Wacth | Smart watch yang dapat membantu orang tua untuk mencari anaknya | 2000000 |    50 |           1 |
++----+------------+-----------------------------------------------------------------+---------+-------+-------------+
+
+mysql> select * from item where name like '%sang%';
++----+-------------+-----------------------------------------------------------------+---------+-------+-------------+
+| id | name        | description                                                     | price   | stock | category_id |
++----+-------------+-----------------------------------------------------------------+---------+-------+-------------+
+|  1 | Sumsang b50 | Handphone canggih dari Sumsang yang dapat menemani aktivitas mu | 4000000 |   100 |           1 |
+|  2 | Sumsang b50 | Baju yang nyaman untuk digunakan beraktivitas sepanjang hari    |  500000 |    50 |           2 |
++----+-------------+-----------------------------------------------------------------+---------+-------+-------------+
+
+(C)
+mysql> select item.id, item.name, item.description, item.price, item.stock, item.category_id, categories.name from item inner join categories on item.category_id = categories.id;
++----+-------------+-----------------------------------------------------------------+---------+-------+-------------+--------+
+| id | name        | description                                                     | price   | stock | category_id | name   |
++----+-------------+-----------------------------------------------------------------+---------+-------+-------------+--------+
+|  1 | Sumsang b50 | Handphone canggih dari Sumsang yang dapat menemani aktivitas mu | 4000000 |   100 |           1 | gadget |
+|  2 | Sumsang b50 | Baju yang nyaman untuk digunakan beraktivitas sepanjang hari    |  500000 |    50 |           2 | cloth  |
+|  3 | Uniklooh    | Baju yang nyaman untuk digunakan beraktivitas sepanjang hari    |  500000 |    50 |           2 | cloth  |
+|  4 | IMHO Wacth  | Smart watch yang dapat membantu orang tua untuk mencari anaknya | 2000000 |    50 |           1 | gadget |
++----+-------------+-----------------------------------------------------------------+---------+-------+-------------+--------+
+
+5.
+mysql> update item set price=25000000 where id=1;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from item;
++----+-------------+-----------------------------------------------------------------+----------+-------+-------------+
+| id | name        | description                                                     | price    | stock | category_id |
++----+-------------+-----------------------------------------------------------------+----------+-------+-------------+
+|  1 | Sumsang b50 | Handphone canggih dari Sumsang yang dapat menemani aktivitas mu | 25000000 |   100 |           1 |
+|  2 | Sumsang b50 | Baju yang nyaman untuk digunakan beraktivitas sepanjang hari    |   500000 |    50 |           2 |
+|  3 | Uniklooh    | Baju yang nyaman untuk digunakan beraktivitas sepanjang hari    |   500000 |    50 |           2 |
+|  4 | IMHO Wacth  | Smart watch yang dapat membantu orang tua untuk mencari anaknya |  2000000 |    50 |           1 |
++----+-------------+-----------------------------------------------------------------+----------+-------+-------------+
